@@ -1,25 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState, useEffect } from 'react';
+import Map from './map'
+import UserForm from './UserForm'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [geometry, setGeometry] = useState(null);
+  return(
+    <>
+      {!geometry && <UserForm setGeometry={setGeometry}></UserForm>}
+      {geometry && <Map geometry={geometry}/>}
+    </>
+  )
 }
+
 
 export default App;

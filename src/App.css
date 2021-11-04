@@ -1,20 +1,29 @@
+@import url('https://fonts.googleapis.com/css?family=Coustard&display=swap');
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.Background {
+  height: 100vh;
+  width: 100vw;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.Background-image {
+  background-image: url('./images/ecotrekbg.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+}
+
+.navbar {
+  background-color:#8FC886;
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -24,15 +33,32 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.title {
+  font-family: 'Coustard';
+  position: absolute;
+  top: 10%;
+  font-size: 75px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.description {
+  font-family: 'Coustard';
+  top: 20%;
+  position: fixed;
+  font-size: 30px;
+}
+
+.origin {
+   
+}
+
+.destination {
+  
+}
+
+.dropdown {
+  
+}
+
+.submit {
+  
 }
