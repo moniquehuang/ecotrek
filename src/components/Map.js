@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 import H from "@here/maps-api-for-javascript";
-import Navbar from 'react-bootstrap/Navbar'
-import Nav from 'react-bootstrap/Nav'
-import Container from 'react-bootstrap/Container'
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { MyContext } from './EcoContext';
 
 export default class Map extends React.Component {
@@ -131,6 +130,13 @@ export default class Map extends React.Component {
                 Your journey to {this.context.ori.name}<br/>from {this.context.dest.name}<br/>by {this.props.geometry[0].mode.transportModes[0]}<br/>will produce {this.props.geometry[0].summary.co2Emission} kilograms of carbon.
               </div>
             </div>
+            <Button 
+              variant="success"
+              onClick={ () => {
+                
+              }}
+              type='submit'
+          >Reset</Button>
           </div>
           </div>
         </div>

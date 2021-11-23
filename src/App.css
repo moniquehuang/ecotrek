@@ -94,3 +94,17 @@
   flex-direction: column;
   padding: 20px;
 }
+
+.Body-text {
+  font-family: 'Coustard';
+  font-size: 25px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.About-image {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}

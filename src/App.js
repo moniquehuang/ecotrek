@@ -5,14 +5,13 @@ import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './components/Home';
 import About from './components/About';
 import Resources from './components/Resources';
-import Navibar from './components/Navibar';
+import Navigation from './components/Navigation';
 
 function App() {
-  const [geometry, setGeometry] = useState(null);
   return(
     <>
        <Router basename={process.env.PUBLIC_URL}>
-          <Navibar/>
+          <Navigation/>
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/about" component={About} />

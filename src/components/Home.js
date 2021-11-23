@@ -6,8 +6,7 @@ import UserForm from './UserForm'
 import { ecoValues, MyContext } from './EcoContext';
 
 function App() {
-  const [geometry, setGeometry] = useState(null); //
-  
+  const [geometry, setGeometry] = useState(null); 
   return(
     <>
       <MyContext.Provider value={ecoValues}>

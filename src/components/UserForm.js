@@ -1,6 +1,5 @@
 import '../App.css';
 import Button from 'react-bootstrap/Button';
-import { Navbar, Nav, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import React, { useState, useContext } from 'react';
