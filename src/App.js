@@ -11,7 +11,7 @@ function App() {
   const [geometry, setGeometry] = useState(null);
   return(
     <>
-       <Router>
+       <Router basename='/ecotrek'>
           <Navibar/>
           <Switch>
             <Route exact path="/" component={Home} />
