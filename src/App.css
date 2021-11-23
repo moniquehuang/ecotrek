@@ -5,7 +5,7 @@
 }
 
 .Background {
-  height: 100vh;
+  height: 90vh;
   width: 100vw;
 }
 
@@ -19,7 +19,7 @@
   width: 100%;
 }
 
-.navbar {
+.navibar {
   background-color:#8FC886;
   font-family: 'Coustard';
 }
@@ -31,7 +31,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #b6fccb;
 }
 
 .menu {
@@ -46,15 +46,28 @@
 .title {
   font-family: 'Coustard';
   position: absolute;
-  top: 10%;
+  top: 2vh;
   font-size: 75px;
+}
+
+.subtitle {
+  font-family: 'Coustard';
+  position: absolute;
+  top: 13vh;
+  font-size: 40px;
 }
 
 .description {
   font-family: 'Coustard';
-  top: 20%;
+  top: 20vh;
   position: fixed;
   font-size: 30px;
+}
+
+.instructions {
+  font-family: 'Coustard';
+  font-size: 20px;
+  color: #b6fccb;
 }
 
 .page {

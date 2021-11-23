@@ -119,15 +119,6 @@ export default class Map extends React.Component {
         <div className="App">
           <div className='Background'>
           <div className='Background-image'>
-            <Navbar className='navbar' variant="light">
-              <Container>
-              <Navbar.Brand href="#home">Ecotrek</Navbar.Brand>
-              <Nav className="me-auto">
-                <Nav.Link href="#home">Home</Nav.Link>
-                <Nav.Link href="#carbon">Resources</Nav.Link>
-              </Nav>
-              </Container>
-            </Navbar>
             <header className='App-header'>
               <h1 className='title'>Ecotrek</h1>
             </header>

@@ -1,11 +1,9 @@
-import './App.css';
+import '../App.css';
 import Button from 'react-bootstrap/Button';
-import Navbar from 'react-bootstrap/Navbar'
-import Nav from 'react-bootstrap/Nav'
-import Container from 'react-bootstrap/Container'
+import { Navbar, Nav, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import Select from 'react-select'
 import { MyContext } from './EcoContext';
 
@@ -114,21 +112,13 @@ export default function UserForm({setGeometry}) {
     <div className="App">
       <div className='Background'>
       <div className='Background-image'>
-      <Navbar className='navbar' variant="light">
-        <Container>
-        <Navbar.Brand href="#home">Ecotrek</Navbar.Brand>
-        <Nav className="me-auto">
-          <Nav.Link href="#home">Home</Nav.Link>
-          <Nav.Link href="#carbon">Resources</Nav.Link>
-        </Nav>
-        </Container>
-      </Navbar>
       <header className="App-header">
         <h1 className='title'>Ecotrek</h1>
         <h2 className='description'>Embark on an eco-conscious journey<br/>by tracking your carbon emissions<br/>from a start and end point!</h2>
       </header> 
       <div className='menu'>
-        <div className='origin'>
+        <div className='instructions'>Enter your travel details to view the<br/>estimated carbon emissions for your route.</div>
+        <div className='origin' style={{marginTop: '1.5%'}}>
           <input
             onBlur = {handleChange}
             name='origin'
@@ -136,7 +126,7 @@ export default function UserForm({setGeometry}) {
             placeholder='Origin'
           />
         </div>
-        <div className='destination'>
+        <div className='destination' style={{marginTop: '1.5%'}}>
           <input
             onBlur = {handleChange}
             name='destination'
@@ -144,7 +134,7 @@ export default function UserForm({setGeometry}) {
             placeholder='Destination'
           />
         </div>
-        <div className='dropdown' style={{marginTop: '20px'}}>
+        <div className='dropdown' style={{marginTop: '1.5%'}}>
           <Select 
             onChange = {(event) => setForm(prevForm => ({...prevForm, vehicle: event.value}))}
             name='transportMode'
@@ -154,7 +144,7 @@ export default function UserForm({setGeometry}) {
             placeholder={<div>Transportation Mode</div>}
           />
         </div>
-        <div className='submit'>
+        <div className='submit' style={{marginTop: '1.5%'}}>
           <Button 
             variant="success"
             onClick={ () => {
