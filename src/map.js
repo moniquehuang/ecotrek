@@ -3,8 +3,10 @@ import H from "@here/maps-api-for-javascript";
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Container from 'react-bootstrap/Container'
+import { MyContext } from './EcoContext';
 
 export default class Map extends React.Component {
+  static contextType = MyContext;
     constructor(props) {
       super(props);
       // the reference to the container
@@ -15,6 +17,8 @@ export default class Map extends React.Component {
     }
     componentDidMount() {
       const API_KEY = process.env.REACT_APP_HERE;
+      const context = this.context;
+      this.setState({ ori: context.ori, dest: context.dest });
       if (!this.map) {
         // instantiate a platform, default layers and a map as usual
         const platform = new H.service.Platform({
@@ -26,21 +30,20 @@ export default class Map extends React.Component {
           layers.vector.normal.map,
           {
             pixelRatio: window.devicePixelRatio,
-            zoom: 2
-          });
+            padding: {top: 100, left: 100, bottom: 100, right: 100}
+          }
+          );
           var ui = H.ui.UI.createDefault(map, layers);
         ui.getControl('zoom');
-
         const waypoints = this.props.geometry[0].waypoint;
-        console.log(waypoints);
         // Create the parameters for the routing request:
         var routingParameters = {
           // The routing mode:
           'mode': 'fastest;car;',
           // The start point of the route:
-          'waypoint0': `geo!${Object.values(waypoints[0].mappedPosition).flat()}`,
+          'waypoint0': `geo!${context.ori.coords}`,
           // The end point of the route:
-          'waypoint1': `geo!${Object.values(waypoints[1].mappedPosition).flat()}`,
+          'waypoint1': `geo!${context.dest.coords}`,
           // To retrieve the shape of the route we choose the route
           // representation mode 'display'
           'representation': 'display'
@@ -112,24 +115,31 @@ export default class Map extends React.Component {
     }
   
     render() {
-      
       return (
         <div className="App">
           <div className='Background'>
           <div className='Background-image'>
-          <Navbar className='navbar' variant="light">
-            <Container>
-            <Navbar.Brand href="#home">Ecotrek</Navbar.Brand>
-            <Nav className="me-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#carbon">Resources</Nav.Link>
-            </Nav>
-            </Container>
-          </Navbar>
-            <div
-              style={{ width: '600px', height:'600px' }}
-              ref={this.ref}
-            />
+            <Navbar className='navbar' variant="light">
+              <Container>
+              <Navbar.Brand href="#home">Ecotrek</Navbar.Brand>
+              <Nav className="me-auto">
+                <Nav.Link href="#home">Home</Nav.Link>
+                <Nav.Link href="#carbon">Resources</Nav.Link>
+              </Nav>
+              </Container>
+            </Navbar>
+            <header className='App-header'>
+              <h1 className='title'>Ecotrek</h1>
+            </header>
+            <div className='page'>
+              <div className='map'
+                style={{ width: '500px', height:'500px' }}
+                ref={this.ref}
+              />
+              <div className='Route-details'>
+                Your journey to {this.context.ori.name}<br/>from {this.context.dest.name}<br/>by {this.props.geometry[0].mode.transportModes[0]}<br/>will produce {this.props.geometry[0].summary.co2Emission} kilograms of carbon.
+              </div>
+            </div>
           </div>
           </div>
         </div>

@@ -5,11 +5,13 @@ import Nav from 'react-bootstrap/Nav'
 import Container from 'react-bootstrap/Container'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Select from 'react-select'
+import { MyContext } from './EcoContext';
 
 export default function UserForm({setGeometry}) {
   const API_KEY = process.env.REACT_APP_HERE;
+  const {ori, dest} = useContext(MyContext);
 
   const options = [
     { value: 'pedestrian', label: 'On Foot'},
@@ -56,44 +58,36 @@ export default function UserForm({setGeometry}) {
   };
 
   const [form, setForm] = useState({});
-  const [origin, setOrigin] = useState(null);
-  const [destination, setDestination] = useState(null);
 
   //use location name to get coordinates for routing
   function GetOrigin(loc) {
-    let location;
+    ori.name=loc;
     let coords = '';
     axios.get(`https://geocode.search.hereapi.com/v1/geocode?apikey=${API_KEY}&q=${loc}`)
       .then(res => {
-        //console.log(res.data.items[0]);
         coords = (res.data.items[0].position['lat'] + ',' + res.data.items[0].position['lng']); //string of coordinates
-        setOrigin(coords);
+        ori.coords=coords;
+        ori.latLng.lat=res.data.items[0].position['lat'];
+        ori.latLng.lng=res.data.items[0].position['lng'];
       })
   }
 
   function GetDestination(loc) {
-    let location;
+    dest.name=loc;
     let coords = '';
     axios.get(`https://geocode.search.hereapi.com/v1/geocode?apikey=${API_KEY}&q=${loc}`)
       .then(res => {
-        location = res.data;
-        //console.log(res.data.items[0].position['lat']);
         coords = (res.data.items[0].position['lat'] + ',' + res.data.items[0].position['lng']); //string of coordinates
-        setDestination(coords);
-      })
+        dest.coords=coords;
+        dest.latLng.lat=res.data.items[0].position['lat'];
+        dest.latLng.lng=res.data.items[0].position['lng'];
+       })
   }
-
-  useEffect(() => {
-    if(origin && destination) {
-      console.log(origin);
-      console.log(destination);
-    }
-  }, [origin, destination])
 
   //find a route from origin, destination, and transportation mode
   function CalcRoute() {
     let route;
-    axios.get(`https://route.ls.hereapi.com/routing/7.2/calculateroute.json?waypoint0=${origin}&waypoint1=${destination}&mode=fastest;${form.vehicle};traffic:enabled&departure=now&apiKey=${API_KEY}&vehicletype=gasoline,5&routesummarytype=Co2Emission`)
+    axios.get(`https://route.ls.hereapi.com/routing/7.2/calculateroute.json?waypoint0=${ori.coords}&waypoint1=${dest.coords}&mode=fastest;${form.vehicle};traffic:enabled&departure=now&apiKey=${API_KEY}&vehicletype=gasoline,5&routesummarytype=Co2Emission`)
       .then(res => {
         route = res.data.response.route;
         console.log(route);
@@ -130,9 +124,10 @@ export default function UserForm({setGeometry}) {
         </Container>
       </Navbar>
       <header className="App-header">
-      <h1 className='title'>Ecotrek</h1>
-      <h2 className='description'>Embark on an eco-conscious journey<br/>by tracking your carbon emissions<br/>from a start and end point!</h2>
-      
+        <h1 className='title'>Ecotrek</h1>
+        <h2 className='description'>Embark on an eco-conscious journey<br/>by tracking your carbon emissions<br/>from a start and end point!</h2>
+      </header> 
+      <div className='menu'>
         <div className='origin'>
           <input
             onBlur = {handleChange}
@@ -168,7 +163,7 @@ export default function UserForm({setGeometry}) {
             type='submit'
           >Submit</Button>
         </div>
-    </header>
+      </div> 
     </div>
     </div>
     </div>
