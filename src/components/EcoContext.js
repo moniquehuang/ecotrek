@@ -16,6 +16,9 @@ export const ecoValues = {
         lat: '',
         lng: ''
       }
+    },
+    transport: {
+      mode: ''
     }
   }
   export const MyContext = React.createContext(ecoValues);

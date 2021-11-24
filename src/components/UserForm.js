@@ -8,7 +8,7 @@ import { MyContext } from './EcoContext';
 
 export default function UserForm({setGeometry}) {
   const API_KEY = process.env.REACT_APP_HERE;
-  const {ori, dest} = useContext(MyContext);
+  const {ori, dest, transport, carbon} = useContext(MyContext);
 
   const options = [
     { value: 'pedestrian', label: 'On Foot'},
@@ -58,7 +58,7 @@ export default function UserForm({setGeometry}) {
 
   //use location name to get coordinates for routing
   function GetOrigin(loc) {
-    ori.name=loc;
+    ori.name = loc;
     let coords = '';
     axios.get(`https://geocode.search.hereapi.com/v1/geocode?apikey=${API_KEY}&q=${loc}`)
       .then(res => {
@@ -70,7 +70,7 @@ export default function UserForm({setGeometry}) {
   }
 
   function GetDestination(loc) {
-    dest.name=loc;
+    dest.name = loc;
     let coords = '';
     axios.get(`https://geocode.search.hereapi.com/v1/geocode?apikey=${API_KEY}&q=${loc}`)
       .then(res => {
@@ -83,8 +83,9 @@ export default function UserForm({setGeometry}) {
 
   //find a route from origin, destination, and transportation mode
   function CalcRoute() {
+    transport.mode = form.vehicle;
     let route;
-    axios.get(`https://route.ls.hereapi.com/routing/7.2/calculateroute.json?waypoint0=${ori.coords}&waypoint1=${dest.coords}&mode=fastest;${form.vehicle};traffic:enabled&departure=now&apiKey=${API_KEY}&vehicletype=gasoline,5&routesummarytype=Co2Emission`)
+    axios.get(`https://route.ls.hereapi.com/routing/7.2/calculateroute.json?waypoint0=${ori.coords}&waypoint1=${dest.coords}&mode=fastest;${transport.mode};traffic:enabled&departure=now&apiKey=${API_KEY}&vehicletype=gasoline,5&routesummarytype=Co2Emission`)
       .then(res => {
         route = res.data.response.route;
         console.log(route);

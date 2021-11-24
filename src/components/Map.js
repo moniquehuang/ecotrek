@@ -12,12 +12,12 @@ export default class Map extends React.Component {
       this.ref = React.createRef();
       // reference to the map
       this.map = null;
-      const { geometry } = this.props;
+      const { geometry, setGeometry } = this.props;
     }
     componentDidMount() {
       const API_KEY = process.env.REACT_APP_HERE;
       const context = this.context;
-      this.setState({ ori: context.ori, dest: context.dest });
+      this.setState({ ori: context.ori, dest: context.dest, transport: context.transport, carbon: context.carbon});
       if (!this.map) {
         // instantiate a platform, default layers and a map as usual
         const platform = new H.service.Platform({
@@ -34,7 +34,6 @@ export default class Map extends React.Component {
           );
           var ui = H.ui.UI.createDefault(map, layers);
         ui.getControl('zoom');
-        const waypoints = this.props.geometry[0].waypoint;
         // Create the parameters for the routing request:
         var routingParameters = {
           // The routing mode:
@@ -56,55 +55,41 @@ export default class Map extends React.Component {
             endPoint,
             linestring;
           if(result.response.route) {
-          // Pick the first route from the response:
           route = result.response.route[0];
-          // Pick the route's shape:
           routeShape = route.shape;
 
-          // Create a linestring to use as a point source for the route line
           linestring = new H.geo.LineString();
 
-          // Push all the points in the shape into the linestring:
           routeShape.forEach(function(point) {
             var parts = point.split(',');
             linestring.pushLatLngAlt(parts[0], parts[1]);
           });
 
-          // Retrieve the mapped positions of the requested waypoints:
           startPoint = route.waypoint[0].mappedPosition;
           endPoint = route.waypoint[1].mappedPosition;
 
-          // Create a polyline to display the route:
           var routeLine = new H.map.Polyline(linestring, {
             style: { strokeColor: 'blue', lineWidth: 3 }
           });
 
-          // Create a marker for the start point:
           var startMarker = new H.map.Marker({
             lat: startPoint.latitude,
             lng: startPoint.longitude
           });
 
-          // Create a marker for the end point:
           var endMarker = new H.map.Marker({
             lat: endPoint.latitude,
             lng: endPoint.longitude
           });
 
-          // Add the route polyline and the two markers to the map:
           map.addObjects([routeLine, startMarker, endMarker]);
 
-          // Set the map's viewport to make the whole route visible:
           map.getViewModel().setLookAtData({bounds: routeLine.getBoundingBox()});
           }
         };
 
-        // Get an instance of the routing service:
         var router = platform.getRoutingService();
 
-        // Call calculateRoute() with the routing parameters,
-        // the callback and an error callback function (called if a
-        // communication error occurs):
         router.calculateRoute(routingParameters, onResult,
           function(error) {
             alert(error.message);
@@ -127,17 +112,10 @@ export default class Map extends React.Component {
                 ref={this.ref}
               />
               <div className='Route-details'>
-                Your journey to {this.context.ori.name}<br/>from {this.context.dest.name}<br/>by {this.props.geometry[0].mode.transportModes[0]}<br/>will produce {this.props.geometry[0].summary.co2Emission} kilograms of carbon.
+                Your journey to {this.context.ori.name}<br/>from {this.context.dest.name}<br/>by {this.context.transport.mode}<br/>will produce {this.props.geometry[0].summary.co2Emission} kilograms of carbon.
               </div>
             </div>
-            <Button 
-              variant="success"
-              onClick={ () => {
-                
-              }}
-              type='submit'
-          >Reset</Button>
-          </div>
+            </div>
           </div>
         </div>
       )
