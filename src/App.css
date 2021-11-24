@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css?family=Coustard&display=swap');
+
+.App {
+  text-align: center;
+}
+
+.Background {
+  height: 90vh;
+  width: 100vw;
+}
+
+.Background-image {
+  background-image: url('./images/ecotrekbg.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+}
+
+.navibar {
+  background-color:#8FC886;
+  font-family: 'Coustard';
+}
+
+.App-header {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: #b6fccb;
+}
+
+.menu {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+}
+
+.title {
+  font-family: 'Coustard';
+  position: absolute;
+  top: 2vh;
+  font-size: 75px;
+}
+
+.subtitle {
+  font-family: 'Coustard';
+  position: absolute;
+  top: 13vh;
+  font-size: 40px;
+}
+
+.description {
+  font-family: 'Coustard';
+  top: 20vh;
+  position: fixed;
+  font-size: 30px;
+}
+
+.instructions {
+  font-family: 'Coustard';
+  font-size: 20px;
+  color: #b6fccb;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+}
+
+.map {
+  width: '500px';
+  height:'500px';
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.Route-details {
+  font-size: 20px;
+  font-family: 'Coustard';
+  display: flex;
+  color: white;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.Body-text {
+  font-family: 'Coustard';
+  font-size: 25px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.About-image {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
