@@ -116,7 +116,7 @@ export default class Map extends React.Component {
                 <img src={carbon} className='Route-images' alt='carbon cloud'/>
                 Your journey to {this.context.ori.name} from {this.context.dest.name} by {this.context.transport.value} will produce an estimated {this.props.geometry[0].summary.co2Emission} kilograms of carbon. <br/>
                 <img src={tree} className='Route-images' alt='tree'/>
-                To offset this amount of carbon emissions, it would require {this.context.saplings.value} tree seedlings to be planted and grown for 10 years 
+                To offset this amount of carbon emissions, it would require {this.context.saplings.value} tree seedlings to be planted and grown for 10 years.
               </div>
             </div>
             </div>

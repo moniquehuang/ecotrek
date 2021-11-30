@@ -172,7 +172,7 @@ export default function UserForm({setGeometry}) {
             placeholder={<div>Transportation Mode</div>}
           />
         </div>
-        <div className='submit' style={{marginTop: '1.5%'}}>
+        <div className='submit' style={{marginTop: '10%'}}>
           <Button 
             variant='success'
             onClick={ () => {
