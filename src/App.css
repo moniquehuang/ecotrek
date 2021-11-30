@@ -67,28 +67,28 @@
 .instructions {
   font-family: 'Coustard';
   font-size: 2.25vh;
-  top: 28vh;
+  top: 31vh;
   position: absolute;
 }
 
 .origin {
   position: absolute;
-  top: 35vh;
+  top: 40vh;
 }
 
 .destination {
   position: absolute;
-  top: 43vh;
+  top: 48vh;
 }
 
 .dropdown {
   position: absolute;
-  top: 8vh;
+  top: 12vh;
 }
 
 .submit {
   position: absolute;
-  top: 48vh;
+  top: 66vh;
 }
 
 .page {
@@ -163,7 +163,7 @@
 
 .Resources-images {
   height: 14vh;
-  width: 12vw;
+  width: 9vw;
   border-radius: 10px;
   margin: 1.5vw;
 }

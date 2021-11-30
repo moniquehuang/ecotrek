@@ -13,7 +13,7 @@ function Resources() {
                         <h2 className='subtitle'>Resources</h2>
                     </header>
                 <div className='Resources-page'>
-                    <div className='resource'>
+                    <div className='resource' style={{marginTop: '10vh'}}>
                         <a href='https://ourworldindata.org/grapher/co2-transport-mode?tab=table' target='_blank'>
                             <img src= {owid} className='Resources-images'/>
                         </a>
