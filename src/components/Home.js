@@ -22,7 +22,7 @@ function App() {
               }}
               type='submit'
               style={{position: 'fixed',
-                bottom: '30px',
+                bottom: '5vh',
                 left: '50%'}}
             >Reset</Button> 
           </div>)}

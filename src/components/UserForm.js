@@ -146,7 +146,7 @@ export default function UserForm({setGeometry}) {
       </header> 
       <div className='menu'>
         <div className='instructions'>Enter your travel details to view the<br/>estimated carbon emissions for your route.</div>
-        <div className='origin' style={{marginTop: '1.5%'}}>
+        <div className='origin'>
           <input
             onBlur = {handleChange}
             name='origin'
@@ -154,7 +154,7 @@ export default function UserForm({setGeometry}) {
             placeholder='Origin'
           />
         </div>
-        <div className='destination' style={{marginTop: '1.5%'}}>
+        <div className='destination'>
           <input
             onBlur = {handleChange}
             name='destination'
@@ -162,17 +162,18 @@ export default function UserForm({setGeometry}) {
             placeholder='Destination'
           />
         </div>
-        <div className='dropdown' style={{marginTop: '1.5%'}}>
+        <div className='dropdown'>
           <Select 
             onChange = {(event) => setForm(prevForm => ({...prevForm, vehicle: event.value}))}
             name='transportMode'
             type='text'
             styles={colourStyles}
             options={options}
+            maxMenuHeight={220}
             placeholder={<div>Transportation Mode</div>}
           />
         </div>
-        <div className='submit' style={{marginTop: '1.5%'}}>
+        <div className='submit'>
           <Button 
             variant='success'
             onClick={ () => {
