@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/ecotrek/static/css/main.1e49ce86.chunk.css",
-    "main.js": "/ecotrek/static/js/main.f8c63a96.chunk.js",
-    "main.js.map": "/ecotrek/static/js/main.f8c63a96.chunk.js.map",
-    "runtime-main.js": "/ecotrek/static/js/runtime-main.1ad9ec51.js",
-    "runtime-main.js.map": "/ecotrek/static/js/runtime-main.1ad9ec51.js.map",
-    "static/css/2.28bb0c3d.chunk.css": "/ecotrek/static/css/2.28bb0c3d.chunk.css",
-    "static/js/2.3ceef8e5.chunk.js": "/ecotrek/static/js/2.3ceef8e5.chunk.js",
-    "static/js/2.3ceef8e5.chunk.js.map": "/ecotrek/static/js/2.3ceef8e5.chunk.js.map",
-    "static/js/3.0cafe996.chunk.js": "/ecotrek/static/js/3.0cafe996.chunk.js",
-    "static/js/3.0cafe996.chunk.js.map": "/ecotrek/static/js/3.0cafe996.chunk.js.map",
+    "main.css": "/ecotrek/static/css/main.06b70587.chunk.css",
+    "main.js": "/ecotrek/static/js/main.577bbf82.chunk.js",
+    "main.js.map": "/ecotrek/static/js/main.577bbf82.chunk.js.map",
+    "runtime-main.js": "/ecotrek/static/js/runtime-main.fb0a982f.js",
+    "runtime-main.js.map": "/ecotrek/static/js/runtime-main.fb0a982f.js.map",
+    "static/css/2.383c0125.chunk.css": "/ecotrek/static/css/2.383c0125.chunk.css",
+    "static/js/2.61980505.chunk.js": "/ecotrek/static/js/2.61980505.chunk.js",
+    "static/js/2.61980505.chunk.js.map": "/ecotrek/static/js/2.61980505.chunk.js.map",
+    "static/js/3.554ba225.chunk.js": "/ecotrek/static/js/3.554ba225.chunk.js",
+    "static/js/3.554ba225.chunk.js.map": "/ecotrek/static/js/3.554ba225.chunk.js.map",
     "index.html": "/ecotrek/index.html",
-    "static/css/2.28bb0c3d.chunk.css.map": "/ecotrek/static/css/2.28bb0c3d.chunk.css.map",
-    "static/css/main.1e49ce86.chunk.css.map": "/ecotrek/static/css/main.1e49ce86.chunk.css.map",
-    "static/js/2.3ceef8e5.chunk.js.LICENSE.txt": "/ecotrek/static/js/2.3ceef8e5.chunk.js.LICENSE.txt",
+    "static/css/2.383c0125.chunk.css.map": "/ecotrek/static/css/2.383c0125.chunk.css.map",
+    "static/css/main.06b70587.chunk.css.map": "/ecotrek/static/css/main.06b70587.chunk.css.map",
+    "static/js/2.61980505.chunk.js.LICENSE.txt": "/ecotrek/static/js/2.61980505.chunk.js.LICENSE.txt",
     "static/media/carbon.09db6546.png": "/ecotrek/static/media/carbon.09db6546.png",
     "static/media/depofenergy.48422c6e.jpg": "/ecotrek/static/media/depofenergy.48422c6e.jpg",
     "static/media/App.css": "/ecotrek/static/media/ecotrekbg.0bf3cbe5.jpg",
@@ -23,10 +23,10 @@
     "static/media/tree.d2f50b74.png": "/ecotrek/static/media/tree.d2f50b74.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.1ad9ec51.js",
-    "static/css/2.28bb0c3d.chunk.css",
-    "static/js/2.3ceef8e5.chunk.js",
-    "static/css/main.1e49ce86.chunk.css",
-    "static/js/main.f8c63a96.chunk.js"
+    "static/js/runtime-main.fb0a982f.js",
+    "static/css/2.383c0125.chunk.css",
+    "static/js/2.61980505.chunk.js",
+    "static/css/main.06b70587.chunk.css",
+    "static/js/main.577bbf82.chunk.js"
   ]
 }
