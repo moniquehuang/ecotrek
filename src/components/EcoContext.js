@@ -18,8 +18,14 @@ export const ecoValues = {
       }
     },
     transport: {
-      mode: ''
-    }
+      value: ''
+    },
+    carbon: {
+      value: ''
+    },
+    saplings: {
+      value: ''
+    },
   }
   export const MyContext = React.createContext(ecoValues);
   

@@ -16,13 +16,13 @@ function App() {
         <div>
         <Map geometry={geometry} setGeometry={setGeometry}/>
         <Button 
-              variant="success"
+              variant='success'
               onClick={ () => {
                 setGeometry(null);
               }}
               type='submit'
               style={{position: 'fixed',
-                bottom: "30px",
+                bottom: '30px',
                 left: '50%'}}
             >Reset</Button> 
           </div>)}

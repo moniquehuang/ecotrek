@@ -78,34 +78,78 @@
   font-size: 25px;
 }
 
+.Resources-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .map {
   width: '500px';
   height:'500px';
   display: flex;
   flex-direction: column;
   padding: 20px;
+  max-width: 40vw;
 }
 
 .Route-details {
   font-size: 20px;
   font-family: 'Coustard';
   display: flex;
-  color: white;
+  color: #b6fccb;
   flex-direction: column;
   padding: 20px;
+  max-width: 35vw;
+  align-items: center;
+}
+
+.Route-images {
+  display: flex;
+  padding: 20px;
+  padding-left: 10px;
+  border-radius: 25px 60px;
+  width: 175px;
+  height: 125px;
 }
 
 .Body-text {
   font-family: 'Coustard';
-  font-size: 25px;
+  font-size: 23px;
   display: flex;
   flex-direction: column;
   padding: 20px;
+  color: #b6fccb;
+  max-width: 50vw;
 }
 
 .About-image {
   display: flex;
   flex-direction: column;
   padding: 20px;
+  padding-left: 10px;
   border-radius: 25px 60px;
+}
+
+.resource {
+  display: flex;
+  flex-direction: row;
+}
+
+.Resources-images {
+  height: 125px;
+  width: 125px;
+  border-radius: 10px;
+  margin: 20px;
+}
+
+.Resources-text {
+  font-family: 'Coustard';
+  color: #b6fccb;
+  font-size: 20px;
+  max-width: 30vw;
+  margin: 20px;
+  justify-content: flex-end;
 }

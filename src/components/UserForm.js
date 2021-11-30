@@ -8,13 +8,14 @@ import { MyContext } from './EcoContext';
 
 export default function UserForm({setGeometry}) {
   const API_KEY = process.env.REACT_APP_HERE;
-  const {ori, dest, transport, carbon} = useContext(MyContext);
+  const {ori, dest, transport, carbon, saplings} = useContext(MyContext);
 
   const options = [
     { value: 'pedestrian', label: 'On Foot'},
     { value: 'car', label: 'Car'},
+    { value: 'van', label: 'Light Truck/Van'},
     { value: 'truck', label: 'Truck'},
-    { value: 'bicycle', label: 'Bicycle'},
+    { value: 'motorcycle', label: 'Motorcycle'},
     { value: 'scooter', label: 'Scooter'}
   ]
   
@@ -83,18 +84,45 @@ export default function UserForm({setGeometry}) {
 
   //find a route from origin, destination, and transportation mode
   function CalcRoute() {
-    transport.mode = form.vehicle;
+    transport.value = form.vehicle;
+    let engine, consumption; //consumption in units of liters/100 km
     let route;
-    axios.get(`https://route.ls.hereapi.com/routing/7.2/calculateroute.json?waypoint0=${ori.coords}&waypoint1=${dest.coords}&mode=fastest;${transport.mode};traffic:enabled&departure=now&apiKey=${API_KEY}&vehicletype=gasoline,5&routesummarytype=Co2Emission`)
+    if(form.vehicle === 'car') {
+      engine = 'gasoline';
+      consumption = 9.72;
+    }
+    else if(form.vehicle === 'truck') {
+      engine = 'diesel';
+      consumption = 36.19;
+    }
+    else if(form.vehicle === 'scooter') {
+      engine = 'gasoline';
+      consumption = 3.36;
+    }
+    else if(form.vehicle === 'motorcycle') {
+      transport.value = 'scooter';
+      engine = 'gasoline';
+      consumption = 5.35;
+    }
+    else if(form.vehicle === 'van') {
+      transport.value = 'car';
+      engine = 'gasoline';
+      consumption = 13.44;
+    }
+    else if(form.vehicle === 'pedestrian') {
+      engine = 'electric';
+      consumption = 0;
+    }
+    axios.get(`https://route.ls.hereapi.com/routing/7.2/calculateroute.json?waypoint0=${ori.coords}&waypoint1=${dest.coords}&mode=fastest;${transport.value};traffic:enabled&departure=now&apiKey=${API_KEY}&vehicletype=${engine},${consumption}&routesummarytype=Co2Emission`)
       .then(res => {
         route = res.data.response.route;
-        console.log(route);
+        carbon.total = route[0].summary.co2Emission;
+        saplings.value = Math.round(route[0].summary.co2Emission * 0.01654); //tree seedlings grown for 10 years
         setGeometry(route);
       })
   }
 
   const handleChange = ({ target }) => {
-    console.log(target.name);
     const { name, value } = target;
     setForm(prevForm => ({
       ...prevForm,
@@ -109,10 +137,10 @@ export default function UserForm({setGeometry}) {
 
   return (
     <>
-    <div className="App">
+    <div className='App'>
       <div className='Background'>
       <div className='Background-image'>
-      <header className="App-header">
+      <header className='App-header'>
         <h1 className='title'>Ecotrek</h1>
         <h2 className='description'>Embark on an eco-conscious journey<br/>by tracking your carbon emissions<br/>from a start and end point!</h2>
       </header> 
@@ -146,7 +174,7 @@ export default function UserForm({setGeometry}) {
         </div>
         <div className='submit' style={{marginTop: '1.5%'}}>
           <Button 
-            variant="success"
+            variant='success'
             onClick={ () => {
               CalcRoute();
             }}

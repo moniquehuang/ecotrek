@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-import H from "@here/maps-api-for-javascript";
-import Button from 'react-bootstrap/Button';
+import H from '@here/maps-api-for-javascript';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { MyContext } from './EcoContext';
+import carbon from '../images/carbon.png';
+import tree from '../images/tree.png';
 
 export default class Map extends React.Component {
   static contextType = MyContext;
@@ -17,7 +18,7 @@ export default class Map extends React.Component {
     componentDidMount() {
       const API_KEY = process.env.REACT_APP_HERE;
       const context = this.context;
-      this.setState({ ori: context.ori, dest: context.dest, transport: context.transport, carbon: context.carbon});
+      this.setState({ ori: context.ori, dest: context.dest, transport: context.transport, carbon: context.carbon, saplings: context.saplings});
       if (!this.map) {
         // instantiate a platform, default layers and a map as usual
         const platform = new H.service.Platform({
@@ -100,7 +101,7 @@ export default class Map extends React.Component {
   
     render() {
       return (
-        <div className="App">
+        <div className='App'>
           <div className='Background'>
           <div className='Background-image'>
             <header className='App-header'>
@@ -111,8 +112,11 @@ export default class Map extends React.Component {
                 style={{ width: '500px', height:'500px' }}
                 ref={this.ref}
               />
-              <div className='Route-details'>
-                Your journey to {this.context.ori.name}<br/>from {this.context.dest.name}<br/>by {this.context.transport.mode}<br/>will produce {this.props.geometry[0].summary.co2Emission} kilograms of carbon.
+              <div className='Route-details' style={{ padding: ''}}>
+                <img src={carbon} className='Route-images' alt='carbon cloud'/>
+                Your journey to {this.context.ori.name} from {this.context.dest.name} by {this.context.transport.value} will produce an estimated {this.props.geometry[0].summary.co2Emission} kilograms of carbon. <br/>
+                <img src={tree} className='Route-images' alt='tree'/>
+                To offset this amount of carbon emissions, it would require {this.context.saplings.value} tree seedlings to be planted and grown for 10 years 
               </div>
             </div>
             </div>

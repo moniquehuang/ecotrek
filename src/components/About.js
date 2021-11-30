@@ -3,18 +3,21 @@ import image from '../images/transportation.jpg'
 
 function About() {
     return (
-        <div className="App">
+        <div className='App'>
             <div className='Background'>
                 <div className='Background-image'>
-                    <header className="App-header">
+                    <header className='App-header'>
                         <h1 className='title'>Ecotrek</h1>
                         <h2 className='subtitle'>About</h2>
                     </header>
                     <div className='page'>
                         <div className='Body-text'>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            Transportation is a leading cause for global warming, worsening air quality and the diminishing ozone layer. 
+                            Fossil fuel emissions from transportation contribute to an estimated 20% of global greenhouse gas emissions each year. 
+                            Ecotrek's objective is to present users with the amount of carbon emitted in their travels. 
+                            Users can shift their focus towards eco-friendly travel by comparing their emissions to the number of trees required to offset their carbon.
                         </div>
-                        <img src={image} className='About-image'/>
+                        <img src={image} className='About-image' alt='transportation modes'/>
                     </div>
                 </div>
             </div>
