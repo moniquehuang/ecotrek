@@ -1,6 +1,6 @@
 {
   "name": "ecotrek",
-  "homepage": "https://moniquehuang.github.io/ecotrek/",
+  "homepage": "./",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
