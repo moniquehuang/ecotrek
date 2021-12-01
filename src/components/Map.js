@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import H from '@here/maps-api-for-javascript';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { MyContext } from './EcoContext';
@@ -18,7 +18,7 @@ export default class Map extends React.Component {
     componentDidMount() {
       const API_KEY = process.env.REACT_APP_HERE;
       const context = this.context;
-      this.setState({ ori: context.ori, dest: context.dest, transport: context.transport, carbon: context.carbon, saplings: context.saplings});
+      this.setState({ ori: context.ori, dest: context.dest, transport: context.transport, saplings: context.saplings});
       if (!this.map) {
         // instantiate a platform, default layers and a map as usual
         const platform = new H.service.Platform({
