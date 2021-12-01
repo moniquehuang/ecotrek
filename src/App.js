@@ -10,7 +10,7 @@ import Navigation from './components/Navigation';
 function App() {
   return(
     <>
-       <Router basename="/">
+       <Router basename={process.env.PUBLIC_URL}>
           <Navigation/>
           <Switch>
             <Route exact path="/" component={Home} />
