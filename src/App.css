@@ -83,7 +83,8 @@
 
 .dropdown {
   position: absolute;
-  top: 12vh;
+  min-width: 18vw;
+  top: 56vh;
 }
 
 .submit {
