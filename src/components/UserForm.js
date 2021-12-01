@@ -3,7 +3,6 @@ import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import React, { useState, useContext } from 'react';
-import { useForm, useControlled } from "react-cool-form";
 import Select from 'react-select'
 import { MyContext } from './EcoContext';
 
@@ -20,19 +19,6 @@ export default function UserForm({setGeometry}) {
     { value: 'scooter', label: 'Scooter'}
   ]
   
-  const Field = ({ as, name, ...restProps }) => {
-    const [fieldProps] = useControlled(name, restProps);
-    const Component = as;
-  
-    return <Component {...fieldProps} />;
-  };
-
-  const { form } = useForm({
-    defaultValues: { framework: "" }, // We must provide a default value for the controlled field
-    excludeFields: ["#framework"], // Exclude the internal input element of React-Select by ID
-    onSubmit: (values) => alert(JSON.stringify(values, undefined, 2))
-  });
-
   const colourStyles = {
       control: (styles) => ({ ...styles, backgroundColor: 'white'}),
       option: (styles, { isDisabled, isFocused, isSelected}) => {
@@ -69,7 +55,7 @@ export default function UserForm({setGeometry}) {
       singleValue: (styles) => ({ ...styles, color: 'black'}),
   };
 
-  const [uForm, setUForm] = useState({});
+  const [form, setForm] = useState({});
 
   //use location name to get coordinates for routing
   function GetOrigin(loc) {
@@ -98,32 +84,32 @@ export default function UserForm({setGeometry}) {
 
   //find a route from origin, destination, and transportation mode
   function CalcRoute() {
-    transport.value = uForm.vehicle;
+    transport.value = form.vehicle;
     let engine, consumption; //consumption in units of liters/100 km
     let route;
-    if(uForm.vehicle === 'car') {
+    if(form.vehicle === 'car') {
       engine = 'gasoline';
       consumption = 9.72;
     }
-    else if(uForm.vehicle === 'truck') {
+    else if(form.vehicle === 'truck') {
       engine = 'diesel';
       consumption = 36.19;
     }
-    else if(uForm.vehicle === 'scooter') {
+    else if(form.vehicle === 'scooter') {
       engine = 'gasoline';
       consumption = 3.36;
     }
-    else if(uForm.vehicle === 'motorcycle') {
+    else if(form.vehicle === 'motorcycle') {
       transport.value = 'scooter';
       engine = 'gasoline';
       consumption = 5.35;
     }
-    else if(uForm.vehicle === 'van') {
+    else if(form.vehicle === 'van') {
       transport.value = 'car';
       engine = 'gasoline';
       consumption = 13.44;
     }
-    else if(uForm.vehicle === 'pedestrian') {
+    else if(form.vehicle === 'pedestrian') {
       engine = 'electric';
       consumption = 0;
     }
@@ -138,8 +124,8 @@ export default function UserForm({setGeometry}) {
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
-    setUForm(prevUForm => ({
-      ...prevUForm,
+    setForm(prevForm => ({
+      ...prevForm,
       [name]: value
     }));
     if(name === 'origin') {
@@ -177,20 +163,15 @@ export default function UserForm({setGeometry}) {
           />
         </div>
         <div className='dropdown'>
-          <form ref={form}>
-            <Field
-              as={Select}
-              name="framework"
-              inputId="framework" // Used for excluding the internal input element of React-Select
-              options={options}
-              styles={colourStyles}
-              parse={(option) => option.value}
-              maxMenuHeight = {220}
-              placeholder = {<div>Transport Mode</div>}
-              format={(value) => options.find((option) => option.value === value)}
-              onChange = {(event) => setUForm(prevUForm => ({...prevUForm, vehicle: event.value}))}
-            />
-          </form>
+          <Select 
+            onChange = {(event) => setForm(prevForm => ({...prevForm, vehicle: event.value}))}
+            name='transportMode'
+            type='text'
+            styles={colourStyles}
+            options={options}
+            maxMenuHeight={220}
+            placeholder={<div>Transportation Mode</div>}
+          />
         </div>
         <div className='submit'>
           <Button 
